@@ -141,13 +141,13 @@ def set_timer(update: Update, context: CallbackContext) -> None:
     """Add a job to the queue."""
     chat_id = update.message.chat_id
     try:
-        hour = 9
-        minute = 0
+        hour: int = 9
+        minute: int = 0
         if len(context.args) == 1:
-            hour = context.args[0]
+            hour = int(context.args[0])
         elif len(context.args) == 2:
-            hour = context.args[0]
-            minute = context.args[1]
+            hour = int(context.args[0])
+            minute = int(context.args[1])
 
         job_removed = remove_job_if_exists(str(chat_id), context)
         # context.job_queue.run_once(alarm, due, context=chat_id, name=str(chat_id))
