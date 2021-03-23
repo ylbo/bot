@@ -1,5 +1,1 @@
-.idea/
-*.iml
-*.bak
-logs/
-target/
+config.yml
