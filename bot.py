@@ -81,6 +81,23 @@ def alarm(context: CallbackContext) -> None:
     context.bot.send_message(job.context, text)
 
 
+def get_add(update: Update, context: CallbackContext) -> None:
+    try:
+        alarm(context)
+    except (IndexError, ValueError):
+        update.message.reply_text("输入数据错误")
+
+
+def get(update: Update, context: CallbackContext) -> None:
+    try:
+        i = context.args[0]
+        template = "名称：{}, 基金代码：{}, 最新单位净值：{}, 排名百分比：{}%\n\n"
+        text = template.format(name_map.get(i), i, get_value(i), get_rank_rate(i))
+        update.message.reply_text(text)
+    except (IndexError, ValueError):
+        update.message.reply_text("输入数据错误")
+
+
 def add_fund(update: Update, context: CallbackContext) -> None:
     chat_id = str(update.message.chat_id)
     if fund_map.get(chat_id) is None:
@@ -190,6 +207,8 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("add", add_fund))
     dispatcher.add_handler(CommandHandler("query", query_fund))
     dispatcher.add_handler(CommandHandler("del", del_fund))
+    dispatcher.add_handler(CommandHandler("get", get))
+    dispatcher.add_handler(CommandHandler("get_add", get_add))
 
     # Start the Bot
     updater.start_polling()
