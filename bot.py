@@ -81,13 +81,6 @@ def alarm(context: CallbackContext) -> None:
     context.bot.send_message(job.context, text)
 
 
-def get_add(update: Update, context: CallbackContext) -> None:
-    try:
-        alarm(context)
-    except (IndexError, ValueError):
-        update.message.reply_text("输入数据错误")
-
-
 def get(update: Update, context: CallbackContext) -> None:
     try:
         i = context.args[0]
@@ -208,7 +201,6 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("query", query_fund))
     dispatcher.add_handler(CommandHandler("del", del_fund))
     dispatcher.add_handler(CommandHandler("get", get))
-    dispatcher.add_handler(CommandHandler("get_add", get_add))
 
     # Start the Bot
     updater.start_polling()
