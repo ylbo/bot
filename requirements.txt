@@ -1,5 +1,0 @@
-pandas==1.1.5
-arctic==1.79.4
-akshare==0.8.26
-python-telegram-bot==13.4.1
-PyYAML==5.3.1

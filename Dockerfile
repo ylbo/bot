@@ -1,7 +1,4 @@
-FROM python:3.8.8-slim-buster
+FROM 1635537446/bot-base:latest
 
-WORKDIR /bot
 ADD bot.py /bot
-ADD requirements.txt /bot
-RUN pip install -r requirements.txt --no-cache-dir
 CMD ["python", "/bot/bot.py"]
