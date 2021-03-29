@@ -163,7 +163,7 @@ def set_timer(update: Update, context: CallbackContext) -> None:
         # context.job_queue.run_once(alarm, due, context=chat_id, name=str(chat_id))
         # context.job_queue.run_repeating(alarm, 5, context=chat_id, name=str(chat_id))
         context.job_queue.run_daily(alarm, time=time(hour - 8, minute, second=0),
-                                    days=(1, 2, 3, 4, 5),
+                                    days=(0, 1, 2, 3, 4),
                                     context=chat_id, name=str(chat_id))
 
         text = '定时任务设置成功!'
